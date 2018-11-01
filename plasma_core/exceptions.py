@@ -17,5 +17,6 @@ class TxAmountMismatchException(Exception):
 class InvalidBlockMerkleException(Exception):
     """merkle tree of a block is invalid"""
 
+
 class BlockDoesNotExistException(Exception):
     """that block doesn't exist in the current chain"""

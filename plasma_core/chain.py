@@ -7,6 +7,7 @@ from plasma_core.exceptions import (InvalidBlockSignatureException,
                                     BlockDoesNotExistException,
                                     TxAmountMismatchException)
 
+
 class Chain(object):
 
     def __init__(self, operator):
