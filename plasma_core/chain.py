@@ -4,7 +4,11 @@ from plasma_core.constants import NULL_SIGNATURE
 from plasma_core.exceptions import (InvalidBlockSignatureException,
                                     InvalidTxSignatureException,
                                     TxAlreadySpentException,
+                                    #BlockDoesNotExistException,
                                     TxAmountMismatchException)
+# TODO: Move to exception class
+class BlockDoesNotExistException(Exception):
+    """that block doesn't exist in the current chain"""
 
 
 class Chain(object):
@@ -59,6 +63,9 @@ class Chain(object):
             # Transactions coming from block 0 are valid.
             if blknum == 0:
                 continue
+
+            if not (blknum in self.blocks):
+                raise BlockDoesNotExistException('block index %d is not in the blocklist' % blknum)
 
             input_tx = self.blocks[blknum].transaction_set[txindex]
 
